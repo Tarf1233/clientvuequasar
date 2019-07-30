@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <template>
-      <div>{{post_state}}</div>
+      {{post_state}}
       <div class="q-pa-md" style="max-width: 400px">
 
         <q-form
@@ -11,23 +11,21 @@
         >
           <q-input
             filled
-            v-model="name"
-            label="Your name *"
-            hint="Name and surname"
+            v-model="email"
+            label="your email"
+            hint="type your email"
             lazy-rules
-            :rules="[ val => val && val.length > 0 || 'Please type something']"
+            :rules="[ val => val && val.length > 0 || 'Please type some email']"
           />
 
           <q-input
             filled
-            type="number"
-            v-model="age"
-            label="Your age *"
+            type="password"
+            v-model="password"
+            label="password"
+            hint="type your password"
             lazy-rules
-            :rules="[
-              val => val !== null && val !== '' || 'Please type your age',
-              val => val > 0 && val < 100 || 'Please type a real age'
-            ]"
+            :rules="[ val => val && val.length > 0 || 'Please type some password']"
           />
 
           <q-toggle v-model="accept" label="I accept the license and terms" />
@@ -52,9 +50,8 @@ export default {
   data () {
     return {
       pagename: 'pagelogin',
-      name: null,
-      age: null,
-
+      email: null,
+      password: null,
       accept: false
     }
   },
@@ -72,7 +69,7 @@ export default {
           message: 'You need to accept the license and terms first'
         })
       } else {
-        this.Login()
+        this.Login({ email: this.email, password: this.password })
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
@@ -83,8 +80,8 @@ export default {
     },
 
     onReset () {
-      this.name = null
-      this.age = null
+      this.email = null
+      this.password = null
       this.accept = false
     }
   }
