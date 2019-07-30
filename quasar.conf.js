@@ -69,6 +69,9 @@ module.exports = function (ctx) {
       // gzip: true,
       // analyze: true,
       // extractCSS: false,
+      env: {
+        API: JSON.stringify('http://localhost:3301/')
+      },
       extendWebpack (cfg) {
         cfg.module.rules.push({
           enforce: 'pre',

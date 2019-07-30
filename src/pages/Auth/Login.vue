@@ -1,6 +1,7 @@
 <template>
   <q-page class="flex flex-center">
     <template>
+      <div>{{post_state}}</div>
       <div class="q-pa-md" style="max-width: 400px">
 
         <q-form
@@ -46,6 +47,7 @@
 </style>
 
 <script>
+import { mapActions, mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -56,8 +58,11 @@ export default {
       accept: false
     }
   },
-
+  computed: {
+    ...mapState('auth', ['post_state'])
+  },
   methods: {
+    ...mapActions('auth', ['Login']),
     onSubmit () {
       if (this.accept !== true) {
         this.$q.notify({
@@ -67,6 +72,7 @@ export default {
           message: 'You need to accept the license and terms first'
         })
       } else {
+        this.Login()
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
