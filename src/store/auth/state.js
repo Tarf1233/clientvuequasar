@@ -1,4 +1,3 @@
 export default {
-  post_state: null,
-  logged: false
+  login_state: true
 }

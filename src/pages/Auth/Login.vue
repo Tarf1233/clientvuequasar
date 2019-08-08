@@ -55,12 +55,16 @@ export default {
       accept: false
     }
   },
+  mounted () {
+    // this.ClearAuth()
+  },
   computed: {
     ...mapState('auth', ['post_state'])
   },
   methods: {
-    ...mapActions('auth', ['Login']),
-    onSubmit () {
+    ...mapActions('auth', ['SetLogin']),
+    ...mapActions('auth', ['ClearAuth']),
+    async onSubmit () {
       if (this.accept !== true) {
         this.$q.notify({
           color: 'red-5',
@@ -69,13 +73,14 @@ export default {
           message: 'You need to accept the license and terms first'
         })
       } else {
-        this.Login({ email: this.email, password: this.password })
+        await this.SetLogin({ email: this.email, password: this.password })
         this.$q.notify({
           color: 'green-4',
           textColor: 'white',
           icon: 'fas fa-check-circle',
           message: 'Submitted'
         })
+        this.$router.push('/dashboard/products')
       }
     },
 

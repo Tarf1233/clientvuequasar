@@ -1,24 +1,41 @@
-
+const { CheckAuth } = require('./middlewares')
 const routes = [
   {
     path: '/',
     component: () => import('layouts/minLayout.vue'),
+    beforeEnter: CheckAuth,
     children: [
-      { path: '', component: () => import('pages/Index.vue') },
-      { path: 'auth/register', component: () => import('pages/Auth/Register.vue') },
-      { path: 'auth/login', component: () => import('pages/Auth/Login.vue') },
-      { path: 'auth/forgot', component: () => import('pages/Auth/Forgot.vue') }
+      { path: '',
+        name: 'index',
+        component: () => import('pages/Index.vue') }
+    ]
+  },
+  {
+    path: '/auth',
+    component: () => import('layouts/minLayout.vue'),
+    beforeEnter: CheckAuth,
+    children: [
+      { path: 'register',
+        name: 'register',
+        component: () => import('pages/Auth/Register.vue') },
+      { path: 'login',
+        name: 'login',
+        component: () => import('pages/Auth/Login.vue') },
+      { path: 'forgot',
+        component: () => import('pages/Auth/Forgot.vue') }
     ]
   },
   {
     path: '/dashboard',
     component: () => import('layouts/mainLayout.vue'),
+    beforeEnter: CheckAuth,
     children: [
-      { path: '', component: () => import('pages/Index.vue') }
+      { path: 'products',
+        component: () => import('pages/Dashboard/Products.vue'),
+        name: 'products' }
     ]
   }
 ]
-
 // Always leave this as last one
 if (process.env.MODE !== 'ssr') {
   routes.push({

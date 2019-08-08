@@ -1,2 +1,3 @@
-export function someGetter (/* state */) {
+export function doneState (state) {
+  return state.login_state
 }
