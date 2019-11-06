@@ -47,7 +47,9 @@ module.exports = function (ctx) {
         'QItemLabel',
         'QForm',
         'QInput',
-        'QToggle'
+        'QToggle',
+        'QTable',
+        'QSpace'
       ],
 
       directives: [
