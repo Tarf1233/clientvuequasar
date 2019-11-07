@@ -13,10 +13,10 @@
         </q-btn>
 
         <q-toolbar-title>
-          Quasar App
+          Xrey App
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <div>v1.0</div>
       </q-toolbar>
     </q-header>
 

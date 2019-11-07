@@ -9,6 +9,6 @@
 
 <script>
 export default {
-  name: 'Cliente'
+  name: 'PageIndex'
 }
 </script>

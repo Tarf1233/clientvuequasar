@@ -16,8 +16,10 @@ const routes = [
     children: [
       { path: '', component: () => import('pages/Dashboard/Index.vue') },
       { path: 'Home', component: () => import('pages/Dashboard/Index.vue') },
-      { path: 'Venda', component: () => import('pages/Dashboard/Venda.vue') },
-      { path: 'Cliente', component: () => import('pages/Dashboard/Cliente.vue') }
+      { path: 'Venda', component: () => import('pages/Dashboard/Venda/Venda.vue') },
+      { path: 'Venda/Details', component: () => import('pages/Dashboard/Venda/VendaDetails.vue') },
+      { path: 'Cliente', component: () => import('pages/Dashboard/Cliente/Cliente.vue') },
+      { path: 'Venda/Details', component: () => import('pages/Dashboard/Cliente/ClienteDetails.vue') }
     ]
   }
 ]
